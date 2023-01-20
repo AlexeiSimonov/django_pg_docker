@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Словарь{% endblock title %}
+{% block header %}
+<h1>Список</h1>
+{% endblock header %}
+{% block content %}
+{% for person in people %}
+<ul>
+    <li>{{ person }}</li>
+</ul>
+{% endfor %}
+{%endblock content %}

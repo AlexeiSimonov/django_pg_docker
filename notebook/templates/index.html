@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Ввод данных{% endblock title %}
+{% block header %}
+<h2>Ввод данных</h2>
+{% endblock header %}
+{% block content %}
+<form method="POST" novalidate>
+        {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Send" >
+</form>
+{% for person in people %}
+<ul>
+    <li>{{ person }}</li>
+</ul>
+{% endfor %}
+{% endblock content %}
