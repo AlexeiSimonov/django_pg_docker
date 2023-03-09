@@ -1,0 +1,19 @@
+FROM python:alpine
+
+COPY ./ /django_pg_docker/
+
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+RUN pip install --upgrade pip \
+    && cd django_pg_docker \
+    && pip install -r requirements.txt
+
+WORKDIR /django_pg_docker/
+
+VOLUME /django_pg_docker/
+
+EXPOSE 8000
+
+#CMD ["python", "./manage.py", "makemigration", ";", "python", "./manage.py", "migrate", ",", "python", "./manage.py", "runserver", "127.0.0.1:8000"]
+CMD python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: pgs
+    ports:
+      - "5435:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: alexei
+      POSTGRES_PASSWORD: ge3038206
+      POSTGRES_DB: Example
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+#      - postgres-data:/var/lib/postgresql/data
+  app:
+    image: alexeisimonov/web
+    container_name: app
+    environment:
+      POSTGRES_HOST: db
+    ports:
+      - "8000:8000"
+    links:
+      - db
+
+#volumes:
+#  postgres-data:
